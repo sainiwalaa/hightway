@@ -1027,9 +1027,243 @@ button{
   display:none !important;
 }
 
+
+/* =========================================================
+   VEHICLE STICKER LIBRARY
+========================================================= */
+
+#stickerPage{
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  display:none;
+  background:rgba(2,6,12,.94);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  padding:14px;
+}
+
+#stickerPage.open{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.stickerPageBox{
+  width:min(980px,100%);
+  max-height:94vh;
+  overflow:auto;
+  background:#0f1720;
+  border:2px solid #ffd43b;
+  border-radius:18px;
+  box-shadow:0 20px 80px rgba(0,0,0,.75);
+}
+
+.stickerPageTop{
+  position:sticky;
+  top:0;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  background:#121a24;
+  border-bottom:1px solid #2c3644;
+}
+
+.stickerPageTop h3{
+  margin:0;
+  color:#ffd43b;
+  font-size:16px;
+}
+
+.stickerPageTop small{
+  display:block;
+  color:#8492a5;
+  font-size:8px;
+  margin-top:3px;
+}
+
+.stickerClose{
+  width:34px;
+  height:34px;
+  border:1px solid #3a4656;
+  border-radius:9px;
+  background:#1b2430;
+  color:#fff;
+  font-size:18px;
+}
+
+.stickerTabs{
+  display:flex;
+  gap:6px;
+  overflow:auto;
+  padding:10px 12px 5px;
+}
+
+.stickerTab{
+  flex:0 0 auto;
+  border:1px solid #344052;
+  background:#17202b;
+  color:#cbd5e1;
+  border-radius:20px;
+  padding:7px 12px;
+  font-size:9px;
+  font-weight:900;
+}
+
+.stickerTab.active,
+.stickerTab:hover{
+  background:#ffd43b;
+  color:#111;
+  border-color:#ffd43b;
+}
+
+#stickerGrid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:8px;
+  padding:10px 12px 14px;
+}
+
+.stickerCard{
+  min-height:105px;
+  border:2px solid #283443;
+  border-radius:12px;
+  background:linear-gradient(145deg,#18212c,#0d131b);
+  color:#fff;
+  padding:8px 5px;
+  cursor:pointer;
+  transition:.18s ease;
+  text-align:center;
+}
+
+.stickerCard:hover{
+  transform:translateY(-2px);
+  border-color:#ffd43b;
+}
+
+.stickerCard.selected{
+  border-color:#00d2ff;
+  box-shadow:0 0 0 2px rgba(0,210,255,.16),0 8px 25px rgba(0,0,0,.35);
+}
+
+.stickerEmoji{
+  height:60px;
+  display:grid;
+  place-items:center;
+  font-size:45px;
+  line-height:1;
+}
+
+.stickerName{
+  font-size:8px;
+  font-weight:900;
+  margin-top:4px;
+}
+
+.stickerType{
+  color:#728096;
+  font-size:7px;
+  margin-top:2px;
+}
+
+.stickerSelectedBar{
+  position:sticky;
+  bottom:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:9px 12px;
+  background:#111923;
+  border-top:1px solid #2c3644;
+}
+
+#selectedStickerInfo{
+  color:#d8e0ea;
+  font-size:9px;
+  font-weight:800;
+}
+
+#selectedStickerInfo b{
+  color:#ffd43b;
+}
+
+.stickerUseBtn{
+  border:0;
+  background:#ffd43b;
+  color:#111;
+  border-radius:9px;
+  padding:9px 13px;
+  font-size:9px;
+  font-weight:900;
+}
+
+.postStickerBox{
+  margin:8px 0 10px;
+  padding:8px;
+  border:1px solid #334155;
+  border-radius:9px;
+  background:#0b1118;
+}
+
+.postStickerLabel{
+  color:#94a3b8;
+  font-size:8px;
+  margin-bottom:5px;
+}
+
+#postStickerPreview{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px dashed #334155;
+  border-radius:7px;
+  background:#111827;
+}
+
+#postStickerPreview .postStickerEmoji{
+  font-size:38px;
+}
+
+#postStickerPreview .postStickerEmpty{
+  color:#64748b;
+  font-size:8px;
+}
+
+.stickerOnTruck{
+  position:absolute;
+  right:18px;
+  top:31px;
+  z-index:225;
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  font-size:34px;
+  filter:drop-shadow(2px 3px 2px rgba(0,0,0,.55));
+  pointer-events:none;
+}
+
 /* MOBILE */
 
 @media(max-width:600px){
+
+  #stickerGrid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .stickerCard{
+    min-height:92px;
+  }
+
+  .stickerEmoji{
+    height:52px;
+    font-size:38px;
+  }
 
   #location{
     top:8px;
@@ -1782,7 +2016,41 @@ button{
 
   </div>
 
+  
   <!-- =====================================================
+       VEHICLE STICKER LIBRARY
+       ===================================================== -->
+
+  <div id="stickerPage">
+
+    <div class="stickerPageBox">
+
+      <div class="stickerPageTop">
+        <div>
+          <h3>🚛 VEHICLE STICKER GARAGE</h3>
+          <small>Truck • Bus • Car stickers — select करके अपने post में लगाएँ</small>
+        </div>
+        <button class="stickerClose" type="button" onclick="closeStickerPage()">×</button>
+      </div>
+
+      <div class="stickerTabs">
+        <button class="stickerTab active" data-sticker-filter="all" type="button">ALL</button>
+        <button class="stickerTab" data-sticker-filter="truck" type="button">🚛 TRUCK</button>
+        <button class="stickerTab" data-sticker-filter="bus" type="button">🚌 BUS</button>
+        <button class="stickerTab" data-sticker-filter="car" type="button">🚗 CAR</button>
+      </div>
+
+      <div id="stickerGrid"></div>
+
+      <div class="stickerSelectedBar">
+        <div id="selectedStickerInfo">कोई sticker select नहीं है</div>
+        <button class="stickerUseBtn" type="button" onclick="useSelectedStickerForPost()">✍️ USE IN POST</button>
+      </div>
+
+    </div>
+
+  </div>
+<!-- =====================================================
        PROFILE MODAL
        ===================================================== -->
 
@@ -2022,6 +2290,157 @@ var ruleIndex = 0;
 var truckTimer1 = null;
 var truckTimer2 = null;
 var truckTimer3 = null;
+
+
+/* =========================================================
+   VEHICLE STICKER SYSTEM
+========================================================= */
+
+var vehicleStickers = [
+  {id:"truck1",type:"truck",name:"Red Heavy Truck",emoji:"🚛"},
+  {id:"truck2",type:"truck",name:"Classic Truck",emoji:"🚚"},
+  {id:"truck3",type:"truck",name:"Indian Cargo",emoji:"🚛"},
+  {id:"truck4",type:"truck",name:"Long Trailer",emoji:"🚚"},
+  {id:"truck5",type:"truck",name:"Container Truck",emoji:"🚛"},
+  {id:"truck6",type:"truck",name:"Mini Truck",emoji:"🛻"},
+  {id:"truck7",type:"truck",name:"Tipper Truck",emoji:"🚛"},
+  {id:"truck8",type:"truck",name:"Road King",emoji:"🚚"},
+
+  {id:"bus1",type:"bus",name:"City Bus",emoji:"🚌"},
+  {id:"bus2",type:"bus",name:"Tourist Bus",emoji:"🚍"},
+  {id:"bus3",type:"bus",name:"School Bus",emoji:"🚌"},
+  {id:"bus4",type:"bus",name:"Highway Bus",emoji:"🚍"},
+  {id:"bus5",type:"bus",name:"Luxury Bus",emoji:"🚌"},
+  {id:"bus6",type:"bus",name:"Night Bus",emoji:"🚍"},
+
+  {id:"car1",type:"car",name:"Red Car",emoji:"🚗"},
+  {id:"car2",type:"car",name:"Blue Car",emoji:"🚙"},
+  {id:"car3",type:"car",name:"Taxi",emoji:"🚕"},
+  {id:"car4",type:"car",name:"Police Car",emoji:"🚓"},
+  {id:"car5",type:"car",name:"SUV",emoji:"🚙"},
+  {id:"car6",type:"car",name:"Sports Car",emoji:"🏎️"},
+  {id:"car7",type:"car",name:"Racing Car",emoji:"🏎️"},
+  {id:"car8",type:"car",name:"Family Car",emoji:"🚗"}
+];
+
+var selectedSticker = null;
+var activeStickerFilter = "all";
+
+function openStickerPage(){
+  renderStickerLibrary(activeStickerFilter);
+  document.getElementById("stickerPage").classList.add("open");
+}
+
+function closeStickerPage(){
+  document.getElementById("stickerPage").classList.remove("open");
+}
+
+function renderStickerLibrary(filter){
+  activeStickerFilter = filter || "all";
+
+  var grid = document.getElementById("stickerGrid");
+  if(!grid) return;
+
+  document.querySelectorAll(".stickerTab").forEach(function(tab){
+    tab.classList.toggle(
+      "active",
+      tab.getAttribute("data-sticker-filter") === activeStickerFilter
+    );
+  });
+
+  var list = vehicleStickers.filter(function(item){
+    return activeStickerFilter === "all" ||
+      item.type === activeStickerFilter;
+  });
+
+  grid.innerHTML = list.map(function(item){
+    var selected = selectedSticker && selectedSticker.id === item.id
+      ? " selected"
+      : "";
+
+    return '<button class="stickerCard'+selected+'" type="button" onclick="selectVehicleSticker(\''+
+      item.id+'\')">'+
+      '<div class="stickerEmoji">'+item.emoji+'</div>'+
+      '<div class="stickerName">'+escapeHtml(item.name)+'</div>'+
+      '<div class="stickerType">'+item.type.toUpperCase()+'</div>'+
+      '</button>';
+  }).join("");
+
+  updateSelectedStickerInfo();
+}
+
+function selectVehicleSticker(id){
+  selectedSticker = vehicleStickers.find(function(item){
+    return item.id === id;
+  }) || null;
+
+  renderStickerLibrary(activeStickerFilter);
+  updatePostStickerPreview();
+  showNotification(
+    selectedSticker
+      ? "✅ "+selectedSticker.name+" selected"
+      : "Sticker selected"
+  );
+}
+
+function updateSelectedStickerInfo(){
+  var box = document.getElementById("selectedStickerInfo");
+  if(!box) return;
+
+  if(selectedSticker){
+    box.innerHTML =
+      "Selected: <b>"+escapeHtml(selectedSticker.emoji)+" "+
+      escapeHtml(selectedSticker.name)+"</b>";
+  }else{
+    box.innerText = "कोई sticker select नहीं है";
+  }
+}
+
+function updatePostStickerPreview(){
+  var box = document.getElementById("postStickerPreview");
+  if(!box) return;
+
+  if(selectedSticker){
+    box.innerHTML =
+      '<span class="postStickerEmoji">'+
+      escapeHtml(selectedSticker.emoji)+
+      '</span>';
+  }else{
+    box.innerHTML =
+      '<span class="postStickerEmpty">STICKER चुनें</span>';
+  }
+}
+
+function useSelectedStickerForPost(){
+  if(!selectedSticker){
+    showNotification("🚛 पहले Truck / Bus / Car sticker select करें");
+    return;
+  }
+
+  closeStickerPage();
+
+  if(!currentFirebaseUser){
+    openLoginModal();
+    return;
+  }
+
+  document.getElementById("sloganModal").style.display = "flex";
+  updatePostStickerPreview();
+}
+
+function clearSelectedSticker(){
+  selectedSticker = null;
+  updatePostStickerPreview();
+  updateSelectedStickerInfo();
+}
+
+document.addEventListener("click", function(event){
+  var tab = event.target.closest(".stickerTab");
+  if(tab){
+    renderStickerLibrary(tab.getAttribute("data-sticker-filter"));
+  }
+});
+
 
 var defaultAvatar =
   "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
@@ -3482,6 +3901,26 @@ function saveSlogan(){
 
       category:category,
 
+      stickerId:
+        selectedSticker
+        ? selectedSticker.id
+        : "",
+
+      stickerType:
+        selectedSticker
+        ? selectedSticker.type
+        : "",
+
+      stickerEmoji:
+        selectedSticker
+        ? selectedSticker.emoji
+        : "",
+
+      stickerName:
+        selectedSticker
+        ? selectedSticker.name
+        : "",
+
       likes:0,
 
       comments:[],
@@ -3515,6 +3954,8 @@ function saveSlogan(){
     document.getElementById(
       "uSlogan"
     ).value="";
+
+    clearSelectedSticker();
 
     closeModal();
 
@@ -4137,7 +4578,9 @@ function loadDriverPosts(uid){
 
         '<div class="profileSloganItem">'+
 
-          '🚛 '+
+          (p.stickerEmoji
+            ? escapeHtml(p.stickerEmoji)+" "
+            : "🚛 ")+
           escapeHtml(
             p.slogan || ""
           )+
