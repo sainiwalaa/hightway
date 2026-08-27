@@ -1670,7 +1670,840 @@ button{
 
 }
 
-  </style>
+  
+/* =========================================================
+   MOBILE GAME-FIT INTERFACE — FINAL RESPONSIVE OVERRIDE
+   Keeps all existing features and only improves screen fit,
+   touch size, readability and game-like mobile layout.
+========================================================= */
+
+html,
+body{
+  width:100%;
+  min-width:0;
+  min-height:100%;
+  overflow:hidden;
+  overscroll-behavior:none;
+  -webkit-text-size-adjust:100%;
+}
+
+#app{
+  width:100%;
+  height:100vh;
+  height:100svh;
+  min-height:0;
+  max-height:100svh;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+@media (max-width:600px){
+
+  html,
+  body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+  }
+
+  #app{
+    height:100vh;
+    height:100svh;
+    min-height:0;
+  }
+
+  /* ---------- TOP HUD ---------- */
+
+  #location{
+    top:8px;
+    left:8px;
+    padding:7px 11px;
+    border-radius:11px;
+    z-index:1200;
+  }
+
+  #location small{
+    font-size:9px;
+    letter-spacing:1.5px;
+  }
+
+  #location b{
+    font-size:16px;
+    line-height:1.15;
+  }
+
+  #topNavControls{
+    top:7px;
+    right:7px;
+    left:auto;
+    max-width:calc(100vw - 145px);
+    display:grid;
+    grid-template-columns:repeat(2,minmax(72px,1fr));
+    gap:5px;
+    z-index:1200;
+  }
+
+  .actionBtn{
+    min-height:40px;
+    padding:8px 9px;
+    border-width:2px;
+    border-radius:12px;
+    font-size:12px;
+    line-height:1;
+    white-space:nowrap;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  #loggedUser{
+    top:102px;
+    right:7px;
+    max-width:calc(100vw - 14px);
+    padding:8px 10px;
+    border-radius:11px;
+    font-size:11px;
+    z-index:1250;
+  }
+
+  #notification{
+    top:108px;
+    width:calc(100vw - 24px);
+    max-width:420px;
+    padding:10px 14px;
+    font-size:13px;
+    line-height:1.25;
+    text-align:center;
+    z-index:4000;
+  }
+
+  /* ---------- GAME WORLD ---------- */
+
+  #sky{
+    height:57%;
+  }
+
+  #mountains,
+  #city,
+  #desert,
+  #river,
+  .tree{
+    bottom:43%;
+  }
+
+  #mountains{
+    height:135px;
+  }
+
+  .mountain{
+    border-left-width:120px;
+    border-right-width:120px;
+    border-bottom-width:125px;
+  }
+
+  #city{
+    height:90px;
+    gap:3px;
+  }
+
+  .building{
+    width:25px;
+  }
+
+  #desert,
+  #river{
+    height:72px;
+  }
+
+  .tree{
+    width:15px;
+    height:50px;
+  }
+
+  .tree:before{
+    width:54px;
+    height:54px;
+    left:-20px;
+    top:-38px;
+  }
+
+  #board{
+    left:50%;
+    transform:translateX(-50%);
+    bottom:44%;
+    width:min(240px,62vw);
+    padding:8px 9px;
+    border-width:2px;
+    border-radius:7px;
+    z-index:140;
+  }
+
+  #board.hide{
+    transform:translateX(-50%) translateY(-25px);
+  }
+
+  #board strong{
+    font-size:18px;
+    line-height:1.1;
+  }
+
+  #board small{
+    display:block;
+    margin-top:3px;
+    font-size:10px;
+    line-height:1.2;
+  }
+
+  /* ---------- HIGHWAY ---------- */
+
+  #highway{
+    height:43%;
+    border-top-width:5px;
+    z-index:50;
+  }
+
+  #lane{
+    top:40%;
+    height:7px;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent 0 55px,
+        #fff 55px 125px
+      );
+  }
+
+  /* ---------- LARGE GAME TRUCK ---------- */
+
+  #truckStage{
+    left:0;
+    right:0;
+    bottom:11%;
+    height:190px;
+    z-index:200;
+    overflow:visible;
+  }
+
+  #truck{
+    left:-410px;
+    bottom:0;
+    width:400px;
+    height:150px;
+    transform:scale(.88);
+    transform-origin:left bottom;
+  }
+
+  /* For narrow phones, keep the truck nearly full-width. */
+  @media (max-width:390px){
+    #truck{
+      transform:scale(.82);
+    }
+  }
+
+  @media (min-width:500px) and (max-width:600px){
+    #truck{
+      transform:scale(1.02);
+    }
+  }
+
+  /* ---------- TRUCK TEXT ---------- */
+
+  .slogan{
+    width:244px;
+    min-height:31px;
+    padding:7px 6px;
+    font-size:16px;
+    line-height:1.15;
+  }
+
+  .safetyBoard{
+    width:230px;
+    padding:6px 9px;
+  }
+
+  .safetyBoard header{
+    font-size:11px;
+    padding:3px;
+  }
+
+  .safetyBoard p{
+    font-size:13px;
+    line-height:1.25;
+  }
+
+  .policeOfficer{
+    font-size:40px;
+  }
+
+  .stickerOnTruck{
+    width:54px;
+    height:54px;
+    font-size:39px;
+  }
+
+  /* ---------- SOCIAL CARD ---------- */
+
+  #socialOverlay{
+    left:50%;
+    bottom:8px;
+    width:calc(100vw - 16px);
+    max-width:500px;
+    padding:11px;
+    border-radius:15px;
+    z-index:1000;
+  }
+
+  .userSocialHeader{
+    padding-bottom:8px;
+    margin-bottom:8px;
+  }
+
+  .userAvatar{
+    width:42px;
+    height:42px;
+  }
+
+  .userName{
+    font-size:14px;
+  }
+
+  .userTag{
+    font-size:10px;
+  }
+
+  .userSloganQuote{
+    font-size:15px;
+    line-height:1.3;
+    padding:8px;
+    margin:8px 0;
+  }
+
+  .socialBarButtons{
+    padding:7px 0;
+    margin-bottom:8px;
+  }
+
+  .sBtn{
+    min-height:36px;
+    padding:6px 9px;
+    font-size:13px;
+    border-radius:8px;
+    touch-action:manipulation;
+  }
+
+  #commentList{
+    max-height:95px;
+    font-size:12px;
+  }
+
+  .commentItem{
+    padding:7px 8px;
+    margin-bottom:4px;
+  }
+
+  .commentInputGroup{
+    gap:6px;
+  }
+
+  .commentInputGroup input{
+    min-height:40px;
+    padding:8px 11px;
+    font-size:13px;
+  }
+
+  .commentInputGroup .actionBtn{
+    min-height:40px;
+    padding:8px 12px !important;
+    font-size:12px !important;
+  }
+
+  /* ---------- QUICK HORNS ---------- */
+
+  #horns{
+    left:8px;
+    bottom:8px;
+    gap:6px;
+    z-index:1100;
+  }
+
+  .horn{
+    width:46px;
+    height:46px;
+    border-width:2px;
+    font-size:19px;
+    touch-action:manipulation;
+  }
+
+  /* ---------- MODALS ---------- */
+
+  .modalOverlay{
+    padding:8px;
+    align-items:center;
+    overflow:hidden;
+  }
+
+  .modalContent{
+    width:100%;
+    max-width:480px;
+    max-height:94svh;
+    padding:18px 14px;
+    border-radius:16px;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .modalContent h3{
+    font-size:20px;
+    margin-bottom:14px;
+  }
+
+  .modalContent input,
+  .modalContent textarea,
+  .modalContent select{
+    min-height:46px;
+    padding:10px 12px;
+    margin-bottom:11px;
+    font-size:14px;
+    border-radius:9px;
+  }
+
+  .loginLogo{
+    width:78px;
+    height:78px;
+    font-size:42px;
+  }
+
+  .loginSub{
+    font-size:12px;
+    margin-bottom:16px;
+  }
+
+  .loginMainBtn{
+    min-height:48px;
+    padding:11px;
+    border-radius:10px;
+    font-size:14px;
+    touch-action:manipulation;
+  }
+
+  .imageUploadBox{
+    padding:13px 10px;
+  }
+
+  .uploadPreview{
+    width:105px;
+    height:105px;
+  }
+
+  .uploadLabel{
+    min-height:42px;
+    padding:11px 15px;
+    font-size:12px;
+    border-radius:22px;
+  }
+
+  .uploadHint{
+    font-size:10px;
+  }
+
+  /* ---------- PROFILE ---------- */
+
+  .profileAvatarBig{
+    width:115px;
+    height:115px;
+  }
+
+  .profileTruckBadge{
+    font-size:12px;
+    padding:5px 12px;
+  }
+
+  .profileStats{
+    gap:7px;
+    margin:12px 0;
+  }
+
+  .profileStat{
+    padding:10px 4px;
+  }
+
+  .profileStat b{
+    font-size:18px;
+  }
+
+  .profileStat span{
+    font-size:10px;
+  }
+
+  .profileSloganBox{
+    max-height:220px;
+  }
+
+  .profileSloganItem{
+    padding:9px;
+    font-size:13px;
+    line-height:1.3;
+  }
+
+  /* ---------- STICKER GARAGE ---------- */
+
+  #stickerPage{
+    padding:7px;
+  }
+
+  #stickerPage.open{
+    align-items:stretch;
+  }
+
+  .stickerPageBox{
+    width:100%;
+    max-height:96svh;
+    border-radius:15px;
+  }
+
+  .stickerPageTop{
+    padding:11px;
+  }
+
+  .stickerPageTop h3{
+    font-size:17px;
+  }
+
+  .stickerPageTop small{
+    font-size:9px;
+  }
+
+  .stickerClose{
+    width:42px;
+    height:42px;
+    font-size:23px;
+  }
+
+  .stickerTabs{
+    padding:9px 10px 5px;
+    gap:6px;
+  }
+
+  .stickerTab{
+    min-height:40px;
+    padding:9px 13px;
+    font-size:11px;
+  }
+
+  #stickerGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    padding:9px 10px 12px;
+  }
+
+  .stickerCard{
+    min-height:125px;
+    padding:8px;
+    border-radius:12px;
+  }
+
+  .stickerEmoji{
+    height:72px;
+    font-size:48px;
+  }
+
+  .stickerName{
+    font-size:11px;
+    line-height:1.2;
+  }
+
+  .stickerType{
+    font-size:8px;
+  }
+
+  .stickerSelectedBar{
+    padding:10px;
+  }
+
+  #selectedStickerInfo{
+    font-size:11px;
+  }
+
+  .stickerUseBtn{
+    min-height:42px;
+    padding:9px 12px;
+    font-size:11px;
+  }
+
+  /* ---------- HIGHWAY PLAYER ---------- */
+
+  #shPlayerDock{
+    right:8px;
+    bottom:8px;
+    gap:6px;
+    z-index:3000;
+  }
+
+  #shPlayerButton,
+  #shPlayerMusic{
+    height:44px;
+    min-width:44px;
+    border-radius:22px;
+  }
+
+  #shPlayerButton{
+    width:44px;
+    padding:0;
+    justify-content:center;
+  }
+
+  #shPlayerMusic{
+    width:44px;
+    font-size:16px;
+  }
+
+  .shPlayerPlayIcon{
+    width:25px;
+    height:25px;
+    font-size:11px;
+  }
+
+  #shPlayerPanel{
+    right:7px;
+    left:7px;
+    bottom:59px;
+    width:auto;
+    max-height:82svh;
+    border-radius:14px;
+  }
+
+  .shPlayerTop{
+    height:50px;
+    padding:0 10px;
+  }
+
+  .shPlayerLogo{
+    width:30px;
+    height:30px;
+    font-size:15px;
+  }
+
+  .shPlayerBrand b{
+    font-size:11px;
+  }
+
+  .shPlayerBrand span{
+    font-size:8px;
+  }
+
+  .shPlayerTopButtons button{
+    width:38px;
+    height:38px;
+    font-size:17px;
+  }
+
+  .shPlaylistBar{
+    min-height:50px;
+    padding:8px 10px;
+  }
+
+  .shPlaylistInfo b{
+    font-size:11px;
+  }
+
+  .shPlaylistInfo span{
+    font-size:8px;
+  }
+
+  .shPlaylistBar button{
+    min-height:38px;
+    padding:8px 10px;
+    font-size:10px;
+  }
+
+  .shYoutubeLoader{
+    padding:9px;
+    gap:6px;
+  }
+
+  #shYoutubeInput{
+    height:42px;
+    padding:0 10px;
+    font-size:11px;
+  }
+
+  #shYoutubeLoad{
+    height:42px;
+    padding:0 13px;
+    font-size:10px;
+  }
+
+  .shHornBox{
+    padding:10px;
+  }
+
+  .shHornTitle{
+    font-size:10px;
+    margin-bottom:8px;
+  }
+
+  .shHornGrid{
+    grid-template-columns:repeat(2,1fr);
+    gap:7px;
+  }
+
+  .shHornBtn{
+    min-height:58px;
+    padding:7px;
+    border-radius:10px;
+    gap:7px;
+  }
+
+  .shHornIcon{
+    width:34px;
+    height:34px;
+    font-size:16px;
+  }
+
+  .shHornBtn b{
+    font-size:9px;
+  }
+
+  .shHornBtn small{
+    font-size:7px;
+  }
+
+  /* ---------- FOOTER ---------- */
+
+  .footer{
+    bottom:2px;
+    padding:0 70px;
+    font-size:8px;
+    line-height:1.2;
+    z-index:850;
+  }
+
+}
+
+/* ---------- VERY SMALL PHONES ---------- */
+
+@media (max-width:360px){
+
+  #topNavControls{
+    max-width:calc(100vw - 125px);
+    grid-template-columns:repeat(2,minmax(62px,1fr));
+  }
+
+  .actionBtn{
+    min-height:36px;
+    padding:7px 6px;
+    font-size:10px;
+  }
+
+  #location{
+    padding:6px 8px;
+  }
+
+  #location b{
+    font-size:14px;
+  }
+
+  #board{
+    width:58vw;
+  }
+
+  #board strong{
+    font-size:16px;
+  }
+
+  .slogan{
+    font-size:14px;
+  }
+
+  #truckStage{
+    bottom:12%;
+  }
+
+  #horns{
+    left:5px;
+    bottom:5px;
+  }
+
+  .horn{
+    width:42px;
+    height:42px;
+  }
+
+  #shPlayerDock{
+    right:5px;
+    bottom:5px;
+  }
+
+  #shPlayerButton,
+  #shPlayerMusic{
+    width:40px;
+    min-width:40px;
+    height:40px;
+  }
+
+}
+
+/* ---------- LANDSCAPE MOBILE ---------- */
+
+@media (max-width:900px) and (orientation:landscape){
+
+  #sky{
+    height:52%;
+  }
+
+  #highway{
+    height:48%;
+  }
+
+  #mountains,
+  #city,
+  #desert,
+  #river,
+  .tree{
+    bottom:48%;
+  }
+
+  #board{
+    bottom:49%;
+    width:190px;
+    padding:5px 7px;
+  }
+
+  #board strong{
+    font-size:14px;
+  }
+
+  #board small{
+    font-size:8px;
+  }
+
+  #truckStage{
+    bottom:5%;
+    height:145px;
+  }
+
+  #truck{
+    transform:scale(.72);
+  }
+
+  #socialOverlay{
+    width:min(420px,70vw);
+    right:8px;
+    left:auto;
+    transform:none;
+    bottom:7px;
+  }
+
+  #horns{
+    bottom:7px;
+  }
+
+  #shPlayerPanel{
+    max-height:88svh;
+  }
+
+}
+
+</style>
 
 </head>
 
